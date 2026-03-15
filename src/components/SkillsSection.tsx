@@ -56,18 +56,23 @@ export default function SkillsSection() {
   return (
     <section id="skills" className="py-0 sm:py-0 px-4">
       <div className="max-w-7xl mx-auto" ref={sectionRef}>
-        <ScrollReveal variant="glitch-in" duration={900}>
+        <ScrollReveal variant="stitch-reveal" duration={1000}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4 text-center f1">
             <span className="text-yellow-400">Skill</span> Deck
           </h2>
         </ScrollReveal>
-        <ScrollReveal variant="fade-up" delay={200}>
+        <ScrollReveal variant="minimal-reveal" delay={200}>
           <p className="text-neutral-400 text-center mb-8 sm:mb-12 font-mono text-xs sm:text-sm">
             {"//"} Hover to reveal pixel glow
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <ScrollReveal
+          variant="stitch-reveal"
+          stagger={80}
+          delay={300}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+        >
           {skills.map((skill) => (
             <div key={skill.name} className="skill-card p-5 relative overflow-hidden">
               <div className={`absolute top-3 right-3 rank-badge ${rankClasses[skill.rank]}`}>
@@ -90,7 +95,7 @@ export default function SkillsSection() {
               <p className="text-xs text-neutral-500">{skill.description}</p>
             </div>
           ))}
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

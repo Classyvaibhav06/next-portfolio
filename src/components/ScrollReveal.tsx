@@ -16,7 +16,10 @@ export type RevealVariant =
   | "power-surge"
   | "warp-in"
   | "scale-rotate"
-  | "split-reveal";
+  | "split-reveal"
+  | "stitch-reveal"
+  | "glass-reveal"
+  | "minimal-reveal";
 
 interface ScrollRevealProps {
   children: ReactNode;

@@ -2,6 +2,7 @@
 
 import ShootingStars from "./ShootingStars";
 import TypingAnimation from "./TypingAnimation";
+import ScrollReveal from "./ScrollReveal";
 
 export default function HeroSection() {
   const handleDownloadCV = () => {
@@ -21,54 +22,50 @@ export default function HeroSection() {
       <ShootingStars />
 
       <div className="max-w-7xl mx-auto text-center w-full relative z-10">
-        <div
-          className="text-yellow-400 text-xs sm:text-sm font-mono mb-4 opacity-0 animate-slide-up"
-          style={{ animationDelay: "0.2s" }}
-        >
-          {"//"} Welcome to my digital realm
-        </div>
+        <ScrollReveal variant="minimal-reveal" delay={200}>
+          <div className="text-yellow-400 text-xs sm:text-sm font-mono mb-4">
+            {"//"} Welcome to my digital realm
+          </div>
+        </ScrollReveal>
 
-        <h1
-          className="text-4xl sm:text-7xl md:text-7xl lg:text-8xl font-black mb-4 sm:mb-6 opacity-0 animate-slide-up leading-tight flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4"
-          style={{ animationDelay: "0.4s" }}
-        >
-          <span>Hi, I&apos;m</span>
-          <span
-            className="font-pixelify f1 text-yellow-400 name-pattern-effect"
-            data-shadow="Vaibhav Ghoshi"
-          >
-            Vaibhav Ghoshi
-          </span>
-        </h1>
+        <ScrollReveal variant="stitch-reveal" delay={400} duration={1000}>
+          <h1 className="text-4xl sm:text-7xl md:text-7xl lg:text-8xl font-black mb-4 sm:mb-6 leading-tight flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+            <span>Hi, I&apos;m</span>
+            <span
+              className="font-pixelify f1 text-yellow-400 name-pattern-effect"
+              data-shadow="Vaibhav Ghoshi"
+            >
+              Vaibhav Ghoshi
+            </span>
+          </h1>
+        </ScrollReveal>
 
-        <div
-          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-neutral-400 mb-6 sm:mb-8 font-mono opacity-0 animate-slide-up"
-          style={{ animationDelay: "0.6s" }}
-        >
-          <TypingAnimation />
-        </div>
+        <ScrollReveal variant="minimal-reveal" delay={600}>
+          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-neutral-400 mb-6 sm:mb-8 font-mono">
+            <TypingAnimation />
+          </div>
+        </ScrollReveal>
 
-        <p
-          className="text-sm sm:text-base lg:text-lg text-neutral-400 mb-6 sm:mb-8 max-w-2xl mx-auto opacity-0 animate-slide-up px-4"
-          style={{ animationDelay: "0.8s" }}
-        >
-          Web developer & DSA enthusiast with C++. Curious minded, open for
-          collaboration and freelancing in development. Tech digger at heart 🚀
-        </p>
+        <ScrollReveal variant="minimal-reveal" delay={800}>
+          <p className="text-sm sm:text-base lg:text-lg text-neutral-400 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
+            Web developer & DSA enthusiast with C++. Curious minded, open for
+            collaboration and freelancing in development. Tech digger at heart 🚀
+          </p>
+        </ScrollReveal>
 
-        <div
-          className="flex items-center justify-center gap-2 mb-8 sm:mb-12 opacity-0 animate-slide-up"
-          style={{ animationDelay: "1s" }}
-        >
-          <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-400 rounded-full animate-pulse-glow" />
-          <span className="text-yellow-400 font-mono text-xs sm:text-sm">
-            Status: Available for Hire
-          </span>
-        </div>
+        <ScrollReveal variant="minimal-reveal" delay={1000}>
+          <div className="flex items-center justify-center gap-2 mb-8 sm:mb-12">
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-400 rounded-full animate-pulse-glow" />
+            <span className="text-yellow-400 font-mono text-xs sm:text-sm">
+              Status: Available for Hire
+            </span>
+          </div>
+        </ScrollReveal>
 
-        <div
-          className="flex flex-wrap gap-3 sm:gap-4 justify-center opacity-0 animate-slide-up px-4"
-          style={{ animationDelay: "1.2s" }}
+        <ScrollReveal
+          variant="stitch-reveal"
+          delay={1200}
+          className="flex flex-wrap gap-3 sm:gap-4 justify-center px-4"
         >
           <a href="#projects" className="btn btn-primary">
             <span className="btn-corner tl" />
@@ -91,7 +88,7 @@ export default function HeroSection() {
             <span className="btn-corner br" />
             <span className="btn-label">💬 Let&apos;s Connect</span>
           </a>
-        </div>
+        </ScrollReveal>
 
         <div className="absolute scroll-to transform -translate-x-1/3 animate-bounce-subtle hidden sm:block">
           <div className="text-yellow-400 text-xs sm:text-sm font-mono mb-2">

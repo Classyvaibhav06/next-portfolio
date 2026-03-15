@@ -102,19 +102,19 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-12 sm:py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <ScrollReveal variant="power-surge" duration={900}>
+        <ScrollReveal variant="stitch-reveal" duration={1000}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4 text-center">
             Featured <span className="text-yellow-400">Projects</span>
           </h2>
         </ScrollReveal>
-        <ScrollReveal variant="fade-up" delay={150}>
+        <ScrollReveal variant="minimal-reveal" delay={150}>
           <p className="text-neutral-400 text-center mb-6 sm:mb-8 font-mono text-xs sm:text-sm">
             {"//"} Hover for details
           </p>
         </ScrollReveal>
 
         {/* Filter */}
-        <ScrollReveal variant="cyber-slide" delay={250}>
+        <ScrollReveal variant="minimal-reveal" delay={250}>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
           {filters.map((f) => (
             <button
@@ -132,29 +132,42 @@ export default function ProjectsSection() {
         </div>
         </ScrollReveal>
 
-        <ScrollReveal variant="fade-up" duration={900} delay={350}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <ScrollReveal variant="stitch-reveal" duration={1000} delay={350} stagger={100} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filteredProjects.map((project) => (
             <div
               key={project.title}
-              className={`project-card bg-neutral-900 rounded-md overflow-hidden group relative ${
+              className={`project-card bg-neutral-900 rounded-md overflow-hidden group relative cursor-pointer ${
                 project.featured ? "md:col-span-2 md:row-span-2" : ""
               }`}
             >
-              <div className="frame-corner top-left" />
-              <div className="frame-corner top-right" />
-              <div className="frame-corner bottom-left" />
-              <div className="frame-corner bottom-right" />
+              {/* Frame Corners - Achievement Style */}
+              {["top-left", "top-right", "bottom-left", "bottom-right"].map((pos) => {
+                const translate = {
+                  "top-left": "translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0",
+                  "top-right": "-translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0",
+                  "bottom-left": "translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0",
+                  "bottom-right": "-translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0",
+                }[pos as "top-left" | "top-right" | "bottom-left" | "bottom-right"];
+                return (
+                  <div
+                    key={pos}
+                    className={`frame-corner ${pos} opacity-0 ${translate} group-hover:opacity-100 transition-all duration-300 z-20`}
+                  />
+                );
+              })}
 
               <div
                 className={`${
                   project.featured ? "aspect-video" : "aspect-video"
-                } bg-gradient-to-br from-yellow-400/20 to-neutral-900 flex items-center justify-center relative overflow-hidden`}
+                } bg-gradient-to-br from-yellow-400/20 to-neutral-900 flex items-center justify-center relative overflow-hidden transition-colors duration-300 group-hover:bg-neutral-800`}
               >
-                <div className={`${project.featured ? "text-8xl" : "text-6xl"} opacity-20`}>
+                {/* Decorative Blob */}
+                <div className="absolute -right-4 -top-4 w-24 h-24 bg-yellow-400/5 rounded-full blur-2xl group-hover:bg-yellow-400/20 transition-all duration-500" />
+                
+                <div className={`${project.featured ? "text-8xl" : "text-6xl"} opacity-20 transition-all duration-500 group-hover:rotate-[360deg] group-hover:opacity-40 group-hover:scale-110`}>
                   {project.icon}
                 </div>
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 sm:gap-4">
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 sm:gap-4 z-10">
                   {project.imageUrl && (
                     <img
                       className="w-full z-[-1] absolute h-full object-cover"
@@ -179,7 +192,7 @@ export default function ProjectsSection() {
                       href={project.repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3 py-2 border border-yellow-400 text-yellow-400 rounded text-sm font-semibold z-10"
+                      className="px-3 py-2 border border-yellow-400 text-yellow-400 rounded text-sm font-semibold z-10 hover:bg-yellow-400/10 transition-colors"
                     >
                       Code
                     </a>
@@ -189,7 +202,7 @@ export default function ProjectsSection() {
                       href={project.repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3 py-2 bg-yellow-400 text-black rounded text-sm font-semibold z-10"
+                      className="px-3 py-2 bg-yellow-400 text-black rounded text-sm font-semibold z-10 hover:bg-yellow-500 transition-all"
                     >
                       View Repo
                     </a>
@@ -199,10 +212,10 @@ export default function ProjectsSection() {
 
               <div className={project.featured ? "p-6" : "p-4"}>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs px-2 py-1 bg-yellow-400/20 text-yellow-400 rounded">
+                  <span className="text-xs px-2 py-1 bg-yellow-400/10 text-yellow-400/60 rounded border border-yellow-400/20 group-hover:bg-yellow-400/20 group-hover:text-yellow-400 group-hover:border-yellow-400/40 transition-all">
                     {project.categoryLabel}
                   </span>
-                  <span className="text-xs text-neutral-500 font-mono">
+                  <span className="text-xs text-neutral-500 font-mono group-hover:text-yellow-400/60 transition-colors">
                     ★ {project.stars}
                   </span>
                 </div>
@@ -213,14 +226,14 @@ export default function ProjectsSection() {
                 >
                   {project.title}
                 </h3>
-                <p className={`text-neutral-400 ${project.featured ? "mb-4" : "text-sm mb-3"}`}>
+                <p className={`text-neutral-400 transition-colors group-hover:text-neutral-300 ${project.featured ? "mb-4" : "text-sm mb-3"}`}>
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 pt-2 border-t border-neutral-800 group-hover:border-yellow-400/20 transition-colors">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 bg-neutral-800 text-yellow-400 text-xs rounded"
+                      className="px-2 py-1 bg-neutral-800 text-neutral-500 text-[10px] rounded font-mono group-hover:text-yellow-400/80 group-hover:bg-yellow-400/5 transition-all"
                     >
                       {tag}
                     </span>
@@ -229,7 +242,6 @@ export default function ProjectsSection() {
               </div>
             </div>
           ))}
-          </div>
         </ScrollReveal>
       </div>
     </section>
