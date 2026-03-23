@@ -8,6 +8,28 @@ export const metadata: Metadata = {
   verification: {
     google: "TYVhBQ0XpERsNFx0VXqEToKEyfBWdrVRxGXWqqRNg3A",
   },
+  openGraph: {
+    title: "Vaibhav-Ghoshi | Full Stack Developer Portfolio",
+    description: "Official portfolio of Vaibhav Ghoshi. Explore my projects, skills in React and Node.js, and professional experience.",
+    url: "https://vaibhav-ghoshi.in",
+    siteName: "Vaibhav-Ghoshi Portfolio",
+    images: [
+      {
+        url: "/ezgif.com-gif-maker.gif",
+        width: 1200,
+        height: 630,
+        alt: "Vaibhav-Ghoshi Portfolio Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vaibhav-Ghoshi | Full Stack Developer Portfolio",
+    description: "Official portfolio of Vaibhav Ghoshi. Explore my projects, skills in React and Node.js, and professional experience.",
+    images: ["/ezgif.com-gif-maker.gif"],
+  },
 };
 
 export default function RootLayout({
