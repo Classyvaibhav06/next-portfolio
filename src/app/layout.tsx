@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/png" href="/image.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -61,7 +61,7 @@ export default function RootLayout({
           defer
         ></script>
       </head>
-      <body className="grid-bg scanline">{children}</body>
+      <body className="grid-bg scanline" suppressHydrationWarning>{children}</body>
     </html>
   );
 }

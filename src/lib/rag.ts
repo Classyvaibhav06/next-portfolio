@@ -113,7 +113,7 @@ Answer:`;
       error.message &&
       error.message.includes("Resource has been exhausted")
     ) {
-      return "I'm a bit overwhelmed right now (rate limit reached). Please wait a minute and try again! 🙏";
+      return "I'm a bit overwhelmed right now (rate limit reached). Please wait a minute and try again!";
     }
     return "Oops! I encountered an error while trying to answer that. Please try again.";
   }

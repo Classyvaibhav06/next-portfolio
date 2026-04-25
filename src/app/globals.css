@@ -847,11 +847,30 @@ html {
 
 .skill-card:hover {
   transform: translateY(-4px) scale(1.02);
+}
+
+.skill-card.gold:hover {
   border-color: rgba(250, 204, 21, 0.8);
   box-shadow:
     0 8px 40px rgba(0, 0, 0, 0.8),
     0 0 35px rgba(250, 204, 21, 0.25),
     0 0 70px rgba(250, 204, 21, 0.15);
+}
+
+.skill-card.silver:hover {
+  border-color: rgba(163, 163, 163, 0.8);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.8),
+    0 0 35px rgba(163, 163, 163, 0.25),
+    0 0 70px rgba(163, 163, 163, 0.15);
+}
+
+.skill-card.bronze:hover {
+  border-color: rgba(245, 158, 11, 0.8);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.8),
+    0 0 35px rgba(245, 158, 11, 0.25),
+    0 0 70px rgba(245, 158, 11, 0.15);
 }
 
 .skill-card:hover::before {
@@ -873,10 +892,22 @@ html {
   image-rendering: pixelated;
 }
 
-.skill-card:hover .skill-icon {
+.skill-card.gold:hover .skill-icon {
   border-color: #facc15;
   box-shadow: 0 0 7px rgba(250, 204, 21, 0.4);
   background: #1f1a00;
+}
+
+.skill-card.silver:hover .skill-icon {
+  border-color: #a3a3a3;
+  box-shadow: 0 0 7px rgba(163, 163, 163, 0.4);
+  background: #1a1a1a;
+}
+
+.skill-card.bronze:hover .skill-icon {
+  border-color: #d97706;
+  box-shadow: 0 0 7px rgba(217, 119, 6, 0.4);
+  background: #1a1200;
 }
 
 /* Pixel Progress Bar */

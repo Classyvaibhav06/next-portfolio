@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
+import { Zap, Coffee, Settings } from "lucide-react";
 
 const socialLinks = [
   {
@@ -69,8 +72,8 @@ export default function Footer() {
     <footer className="py-8 px-4 border-t border-neutral-800 mt-20">
       <div className="max-w-7xl mx-auto text-center">
         <ScrollReveal variant="fade-up" duration={600}>
-          <p className="text-neutral-400 text-sm mb-4">
-            Built with ⚡ and <span className="text-yellow-400">lots of coffee</span>
+          <p className="text-neutral-400 text-sm mb-4 flex items-center justify-center gap-2">
+            Built with <Zap size={14} className="text-yellow-400" /> and <span className="text-yellow-400 flex items-center gap-1"><Coffee size={14} /> lots of coffee</span>
           </p>
         </ScrollReveal>
         <ScrollReveal variant="data-stream" delay={200}>
@@ -107,8 +110,8 @@ export default function Footer() {
           <p className="text-neutral-500 text-xs font-mono">
             © 2025 Vaibhav Ghoshi. All rights reserved.
           </p>
-          <p className="text-neutral-600 text-xs font-mono mt-2">
-            engineered for engineering 👨‍🔧
+          <p className="text-neutral-600 text-xs font-mono mt-2 flex items-center justify-center gap-2">
+            engineered for engineering <Settings size={12} className="animate-spin-slow" />
           </p>
         </ScrollReveal>
       </div>

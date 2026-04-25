@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import ScrollReveal from "./ScrollReveal";
+import { Zap, Rocket, Monitor, Sword, LucideIcon } from "lucide-react";
 
 interface Quest {
   title: string;
@@ -10,7 +11,7 @@ interface Quest {
   status: "active" | "completed";
   xp: string;
   tier: "gold" | "silver" | "bronze";
-  icon: string;
+  icon: LucideIcon;
   items: string[];
   tags: string[];
   side: "left" | "right";
@@ -24,7 +25,7 @@ const quests: Quest[] = [
     status: "active",
     xp: "+1200 XP",
     tier: "gold",
-    icon: "⚡",
+    icon: Zap,
     items: [
       "Led team of 5 developers on enterprise platform",
       "Improved performance by 40% through optimization",
@@ -40,7 +41,7 @@ const quests: Quest[] = [
     status: "completed",
     xp: "+900 XP",
     tier: "silver",
-    icon: "🚀",
+    icon: Rocket,
     items: [
       "Built MVP from scratch, gained 10K users",
       "Implemented real-time features with WebSockets",
@@ -56,7 +57,7 @@ const quests: Quest[] = [
     status: "completed",
     xp: "+600 XP",
     tier: "bronze",
-    icon: "💻",
+    icon: Monitor,
     items: [
       "Developed 15+ client websites",
       "Specialized in animations and interactions",
@@ -70,32 +71,6 @@ const quests: Quest[] = [
 export default function ExperienceSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).style.opacity = "1";
-            (entry.target as HTMLElement).style.transform = "translateY(0)";
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }
-    );
-
-    const items = sectionRef.current?.querySelectorAll(".quest-card-wrapper");
-    items?.forEach((item, index) => {
-      const el = item as HTMLElement;
-      el.style.opacity = "0";
-      el.style.transform = "translateY(30px)";
-      el.style.transition = `opacity 0.6s ease ${index * 0.15}s, transform 0.6s ease ${index * 0.15}s`;
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section id="experience" className="py-16 sm:py-24 px-4 relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative" ref={sectionRef}>
@@ -103,10 +78,10 @@ export default function ExperienceSection() {
         <div className="text-center mb-16 sm:mb-20">
           <ScrollReveal variant="matrix-decode" duration={700}>
             <div
-              className="inline-block px-4 py-1.5 border border-yellow-400/30 rounded-full text-yellow-400 font-mono text-xs mb-4 tracking-widest"
+              className="inline-flex items-center gap-2 px-4 py-1.5 border border-yellow-400/30 rounded-full text-yellow-400 font-mono text-xs mb-4 tracking-widest"
               style={{ background: "rgba(250,204,21,0.05)" }}
             >
-              ⚔️ QUEST LOG
+              <Sword size={12} /> QUEST LOG
             </div>
           </ScrollReveal>
           <ScrollReveal variant="hologram" duration={1000} delay={100}>
@@ -134,13 +109,20 @@ export default function ExperienceSection() {
         </div>
 
         {/* Quest Cards */}
-        <div className="relative space-y-8 md:space-y-0">
+        <ScrollReveal
+          as="div"
+          variant="fade-up"
+          stagger={150}
+          delay={200}
+          className="relative space-y-8 md:space-y-0"
+        >
           {quests.map((quest, i) => {
             const isLeft = quest.side === "left";
             const headerClass = `quest-header quest-header-${quest.tier}`;
             const glowClass = `quest-card-glow quest-${quest.tier}`;
             const nodeClass = `quest-node quest-node-${quest.tier}`;
             const isActive = quest.status === "active";
+            const Icon = quest.icon;
 
             return (
               <div
@@ -150,7 +132,7 @@ export default function ExperienceSection() {
                 }`}
               >
                 <div className={isLeft ? "md:w-1/2 md:pr-16 md:text-right" : "md:w-1/2 md:pl-16"}>
-                  <div className="quest-card group" style={{ animationDelay: `${0.1 + i * 0.2}s` }}>
+                  <div className="quest-card group">
                     <div className={glowClass} />
                     <div className="quest-card-inner">
                       <div className={headerClass}>
@@ -204,7 +186,7 @@ export default function ExperienceSection() {
                 {/* Timeline Node */}
                 <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 z-10">
                   <div className={nodeClass}>
-                    <span className="text-xl">{quest.icon}</span>
+                    <Icon size={20} className="text-yellow-400" />
                   </div>
                 </div>
 
@@ -212,8 +194,9 @@ export default function ExperienceSection() {
               </div>
             );
           })}
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
 }
+

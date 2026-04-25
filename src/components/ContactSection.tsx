@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useRef, FormEvent } from "react";
+import { useState, useRef, FormEvent, useEffect } from "react";
 import ScrollReveal from "./ScrollReveal";
+import { Zap, Rocket } from "lucide-react";
 
 declare global {
   interface Window {
@@ -13,11 +14,16 @@ declare global {
 }
 
 export default function ContactSection() {
+  const [mounted, setMounted] = useState(false);
   const [status, setStatus] = useState<{
     message: string;
     type: "success" | "error" | "loading" | "";
   }>({ message: "", type: "" });
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -104,8 +110,8 @@ export default function ContactSection() {
                 className="w-full h-auto object-cover"
               />
             </div>
-            <p className="text-xs text-neutral-500 text-center mt-2 font-mono">
-              {"//"} My typical coding vibe ⚡
+            <p className="text-xs text-neutral-500 text-center mt-2 font-mono flex items-center justify-center gap-2">
+              {"//"} My typical coding vibe <Zap size={12} className="text-yellow-400" />
             </p>
           </ScrollReveal>
 
@@ -165,17 +171,21 @@ export default function ContactSection() {
                 />
               </div>
 
-              <div
-                className="g-recaptcha"
-                data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"}
-              />
+              {mounted && (
+                <div
+                  className="g-recaptcha"
+                  data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"}
+                />
+              )}
 
               <button type="submit" className="btn btn-primary btn-submit">
                 <span className="btn-corner tl" />
                 <span className="btn-corner tr" />
                 <span className="btn-corner bl" />
                 <span className="btn-corner br" />
-                <span className="btn-label">🚀 Send Message</span>
+                <span className="btn-label flex items-center justify-center gap-2">
+                  <Rocket size={16} /> Send Message
+                </span>
               </button>
 
               {status.message && (

@@ -1,37 +1,42 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import ScrollReveal from "./ScrollReveal";
+import { Trophy, Zap, GraduationCap, Star, Rocket, Lightbulb, Users, BarChart, LucideIcon } from "lucide-react";
 
 interface Achievement {
-  icon: string;
+  icon: LucideIcon;
   title: string;
   description: string;
   year: string;
 }
 
 const achievements: Achievement[] = [
-  { icon: "🏆", title: "First Commit", description: "Pushed code to prod", year: "2019" },
-  { icon: "⚡", title: "100 Day Streak", description: "Committed every day", year: "2022" },
-  { icon: "🎓", title: "Certified Pro", description: "Solutions Architect", year: "2023" },
-  { icon: "🌟", title: "OSS Hero", description: "500+ contributions", year: "2024" },
-  { icon: "🚀", title: "Shipped Prod", description: "10+ Projects launched", year: "2023" },
-  { icon: "💡", title: "Innovation", description: "Best hackathon idea", year: "2022" },
-  { icon: "👥", title: "Team Leader", description: "Managed dev team of 5", year: "2023" },
-  { icon: "📈", title: "Performance", description: "98+ Lighthouse scores", year: "2024" },
+  { icon: Trophy, title: "First Commit", description: "Pushed code to prod", year: "2019" },
+  { icon: Zap, title: "100 Day Streak", description: "Committed every day", year: "2022" },
+  { icon: GraduationCap, title: "Certified Pro", description: "Solutions Architect", year: "2023" },
+  { icon: Star, title: "OSS Hero", description: "500+ contributions", year: "2024" },
+  { icon: Rocket, title: "Shipped Prod", description: "10+ Projects launched", year: "2023" },
+  { icon: Lightbulb, title: "Innovation", description: "Best hackathon idea", year: "2022" },
+  { icon: Users, title: "Team Leader", description: "Managed dev team of 5", year: "2023" },
+  { icon: BarChart, title: "Performance", description: "98+ Lighthouse scores", year: "2024" },
 ];
 
 function AchievementBox({ ach }: { ach: Achievement }) {
+  const Icon = ach.icon;
+  const corners = ["top-left", "top-right", "bottom-left", "bottom-right"] as const;
+  
   return (
-    <div className="achievement-box group cursor-pointer w-full">
+    <div className="achievement-box group cursor-pointer w-full h-full">
       {/* Frame Corners */}
-      {["top-left", "top-right", "bottom-left", "bottom-right"].map((pos) => {
-        const translate = {
+      {corners.map((pos) => {
+        const translateMap = {
           "top-left": "translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0",
           "top-right": "-translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0",
           "bottom-left": "translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0",
           "bottom-right": "-translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0",
-        }[pos];
+        };
+        const translate = translateMap[pos];
         return (
           <div
             key={pos}
@@ -40,12 +45,12 @@ function AchievementBox({ ach }: { ach: Achievement }) {
         );
       })}
 
-      <div className="ach-inner group-hover:bg-[#141414] transition-colors duration-300 relative overflow-hidden">
+      <div className="ach-inner group-hover:bg-[#141414] transition-colors duration-300 relative overflow-hidden h-full flex flex-col">
         <div className="absolute -right-4 -top-4 w-16 h-16 bg-yellow-400/5 rounded-full blur-2xl group-hover:bg-yellow-400/20 transition-all duration-500" />
         <div className="ach-icon bg-neutral-900 border border-neutral-800 group-hover:border-yellow-400 group-hover:bg-yellow-400/10 transition-all duration-500 group-hover:rotate-[225deg]">
-          <span className="text-3xl sm:text-4xl filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 group-hover:-rotate-[225deg]">
-            {ach.icon}
-          </span>
+          <div className="flex items-center justify-center filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 -rotate-[45deg] group-hover:-rotate-[225deg]">
+            <Icon size={32} className="text-yellow-400" />
+          </div>
         </div>
         <div className="mt-4 text-center z-10 w-full relative">
           <h3 className="font-bold text-xs sm:text-sm text-white font-mono tracking-wide uppercase mb-2 group-hover:text-yellow-400 transition-colors">
@@ -66,34 +71,9 @@ function AchievementBox({ ach }: { ach: Achievement }) {
   );
 }
 
+
 export default function AchievementsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).style.opacity = "1";
-            (entry.target as HTMLElement).style.transform = "translateY(0)";
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }
-    );
-
-    const badges = sectionRef.current?.querySelectorAll(".achievement-box");
-    badges?.forEach((badge, index) => {
-      const el = badge as HTMLElement;
-      el.style.opacity = "0";
-      el.style.transform = "translateY(20px)";
-      el.style.transition = `opacity 0.5s ease ${index * 0.08}s, transform 0.5s ease ${index * 0.08}s`;
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section id="achievements" className="py-12 sm:py-20 px-4">

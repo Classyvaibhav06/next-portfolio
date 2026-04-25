@@ -3,6 +3,7 @@
 import ShootingStars from "./ShootingStars";
 import TypingAnimation from "./TypingAnimation";
 import ScrollReveal from "./ScrollReveal";
+import { Zap, FileText, MessageSquare, Rocket } from "lucide-react";
 
 export default function HeroSection() {
   const handleDownloadCV = () => {
@@ -49,7 +50,7 @@ export default function HeroSection() {
         <ScrollReveal variant="minimal-reveal" delay={800}>
           <p className="text-sm sm:text-base lg:text-lg text-neutral-400 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
             Web developer & DSA enthusiast with C++. Curious minded, open for
-            collaboration and freelancing in development. Tech digger at heart 🚀
+            collaboration and freelancing in development. Tech digger at heart <Rocket size={20} className="text-white-400 inline-block align-middle ml-1" />
           </p>
         </ScrollReveal>
 
@@ -72,21 +73,27 @@ export default function HeroSection() {
             <span className="btn-corner tr" />
             <span className="btn-corner bl" />
             <span className="btn-corner br" />
-            <span className="btn-label">⚡ View My Work</span>
+            <span className="btn-label flex items-center gap-2">
+              <Zap size={16} /> View My Work
+            </span>
           </a>
           <button onClick={handleDownloadCV} className="btn btn-outline">
             <span className="btn-corner tl" />
             <span className="btn-corner tr" />
             <span className="btn-corner bl" />
             <span className="btn-corner br" />
-            <span className="btn-label">📄 Download CV</span>
+            <span className="btn-label flex items-center gap-2">
+              <FileText size={16} /> Download CV
+            </span>
           </button>
           <a href="#contact" className="btn btn-ghost">
             <span className="btn-corner tl" />
             <span className="btn-corner tr" />
             <span className="btn-corner bl" />
             <span className="btn-corner br" />
-            <span className="btn-label">💬 Let&apos;s Connect</span>
+            <span className="btn-label flex items-center gap-2">
+              <MessageSquare size={16} /> Let&apos;s Connect
+            </span>
           </a>
         </ScrollReveal>
 
@@ -112,3 +119,4 @@ export default function HeroSection() {
     </section>
   );
 }
+

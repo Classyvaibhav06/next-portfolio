@@ -10,27 +10,27 @@ const commands: Record<string, string> = {
   contact   - Show contact information
   projects  - List my projects
   clear     - Clear the terminal
-  coffee    - Refill XP bar ☕`,
+  coffee    - Refill XP bar`,
   about: `Vaibhav Ghoshi - Web Developer & DSA Enthusiast
 Tech Stack: C++, JavaScript, HTML, CSS, Node.js, React, Tailwind
 Passion: Building innovative web applications and solving DSA problems
-Tagline: engineered for engineering 👨‍🔧
-Fun Fact: Daily DSA practice keeps the bugs away 🐛`,
-  skills: `🟢 Expert: C++, JavaScript, HTML5, CSS3
-🟡 Advanced: Node.js, React, Tailwind CSS, Bootstrap
-🟠 Intermediate: MongoDB, Supabase, EJS, Git`,
-  contact: `📧 Email: vaibhav7290119@gmail.com
-🐙 GitHub: github.com/Classyvaibhav06
-💼 LinkedIn: linkedin.com/in/vaibhav-ghoshi
-📷 Instagram: @vaibhav.ghoshi
-📝 Medium: @vaibhavghoshi
-🎥 YouTube: @code_jaibabba`,
+Tagline: engineered for engineering
+Fun Fact: Daily DSA practice keeps the bugs away`,
+  skills: `[EXPERT]: C++, JavaScript, HTML5, CSS3
+[ADVANCED]: Node.js, React, Tailwind CSS, Bootstrap
+[INTERMEDIATE]: MongoDB, Supabase, EJS, Git`,
+  contact: `Email: vaibhav7290119@gmail.com
+GitHub: github.com/Classyvaibhav06
+LinkedIn: linkedin.com/in/vaibhav-ghoshi
+Instagram: @vaibhav.ghoshi
+Medium: @vaibhavghoshi
+YouTube: @code_jaibabba`,
   projects: `Featured Projects:
-1. Flying Modi Game - Trending game recreation (⭐ 2)
-2. DSA with C++ - Daily DSA practice repo (⭐ 2)
-3. Notification Popup - Modern UI component (⭐ 1)
-4. Git Project Tools - Developer utilities (⭐ 1)
-5. Web Development Projects - ST2, ST3 (⭐ 1 each)
+1. Flying Modi Game - Trending game recreation (2 stars)
+2. DSA with C++ - Daily DSA practice repo (2 stars)
+3. Notification Popup - Modern UI component (1 star)
+4. Git Project Tools - Developer utilities (1 star)
+5. Web Development Projects - ST2, ST3 (1 star each)
 Total: 18 repositories on GitHub`,
 };
 
@@ -87,7 +87,7 @@ export default function Terminal() {
     } else if (cmd === "coffee") {
       newLines.push({
         type: "output",
-        text: "☕ Refilling XP bar...",
+        text: "Refilling XP bar...",
         className: "text-[#ffbd2e] italic",
       });
       setLines(newLines);
