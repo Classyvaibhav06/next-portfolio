@@ -3,7 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { projects } from "@/data/projects";
 import ScrollReveal from "@/components/ScrollReveal";
-import { ChevronLeft, Globe, GitHub as Github, Star, Zap, Code2, Award } from "lucide-react";
+import { ChevronLeft, Globe, Github, Star, Zap, Code2, Award } from "lucide-react";
 import Link from "next/link";
 
 export default function ProjectDetailPage() {
