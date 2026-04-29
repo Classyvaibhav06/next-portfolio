@@ -32,6 +32,12 @@ export const metadata: Metadata = {
   },
 };
 
+import CustomCursor from "@/components/CustomCursor";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Terminal from "@/components/Terminal";
+import ChatBot from "@/components/ChatBot";
+
 export default function RootLayout({
   children,
 }: {
@@ -61,7 +67,14 @@ export default function RootLayout({
           defer
         ></script>
       </head>
-      <body className="grid-bg scanline" suppressHydrationWarning>{children}</body>
+      <body className="grid-bg scanline" suppressHydrationWarning>
+        <CustomCursor />
+        <Navbar />
+        {children}
+        <Footer />
+        <Terminal />
+        <ChatBot />
+      </body>
     </html>
   );
 }

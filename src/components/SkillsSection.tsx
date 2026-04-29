@@ -13,7 +13,7 @@ interface SkillData {
 }
 
 const skills: SkillData[] = [
-  { name: "C++", icon: Zap, rank: "gold", power: 95, description: "DSA & competitive programming" },
+  { name: "Next.js", icon: Zap, rank: "gold", power: 95, description: "Server-side rendering & App Router" },
   { name: "JavaScript", icon: Code, rank: "gold", power: 92, description: "Modern ES6+ & web development" },
   { name: "React", icon: Atom, rank: "silver", power: 88, description: "Component-based architecture" },
   { name: "Node.js", icon: Server, rank: "silver", power: 85, description: "Backend & server-side development" },

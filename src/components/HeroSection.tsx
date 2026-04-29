@@ -6,14 +6,6 @@ import ScrollReveal from "./ScrollReveal";
 import { Zap, FileText, MessageSquare, Rocket } from "lucide-react";
 
 export default function HeroSection() {
-  const handleDownloadCV = () => {
-    const link = document.createElement("a");
-    link.href = "/resume.pdf";
-    link.download = "Vaibhav-Ghoshi-Resume.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   return (
     <section
@@ -77,7 +69,12 @@ export default function HeroSection() {
               <Zap size={16} /> View My Work
             </span>
           </a>
-          <button onClick={handleDownloadCV} className="btn btn-outline">
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline"
+          >
             <span className="btn-corner tl" />
             <span className="btn-corner tr" />
             <span className="btn-corner bl" />
@@ -85,7 +82,7 @@ export default function HeroSection() {
             <span className="btn-label flex items-center gap-2">
               <FileText size={16} /> Download CV
             </span>
-          </button>
+          </a>
           <a href="#contact" className="btn btn-ghost">
             <span className="btn-corner tl" />
             <span className="btn-corner tr" />

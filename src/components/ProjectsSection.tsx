@@ -2,89 +2,9 @@
 
 import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
-import { Gamepad2, Code2, Bell, Wrench, Globe, Zap, Star } from "lucide-react";
-
-interface Project {
-  title: string;
-  description: string;
-  icon: any;
-  category: string;
-  categoryLabel: string;
-  stars: number;
-  tags: string[];
-  demoUrl?: string;
-  repoUrl?: string;
-  imageUrl?: string;
-  featured?: boolean;
-}
-
-const projects: Project[] = [
-  {
-    title: "Flying Modi Game",
-    description:
-      "Trending flying Modi game recreated with JavaScript. Fun browser-based game with smooth animations and interactive gameplay mechanics.",
-    icon: Gamepad2,
-    category: "web",
-    categoryLabel: "GAME",
-    stars: 2,
-    tags: ["JavaScript", "HTML5", "Canvas", "Game Dev"],
-    demoUrl: "https://modi-flyin.netlify.app/",
-    imageUrl: "/brave_screenshot_modi-flyin.netlify.app.png",
-    featured: true,
-  },
-  {
-    title: "DSA with C++",
-    description: "Daily DSA practice repository with C++ solutions and algorithms",
-    icon: Code2,
-    category: "oss",
-    categoryLabel: "OSS",
-    stars: 2,
-    tags: ["C++", "Algorithms"],
-    repoUrl: "https://github.com/Classyvaibhav06/dsa-with-cpp",
-  },
-  {
-    title: "Notification Popup",
-    description: "Clean and modern notification popup component",
-    icon: Bell,
-    category: "web",
-    categoryLabel: "UI/UX",
-    stars: 1,
-    tags: ["HTML", "CSS"],
-    demoUrl: "https://github.com/Classyvaibhav06/notification_popup",
-    repoUrl: "https://github.com/Classyvaibhav06/notification_popup",
-  },
-  {
-    title: "Git Project Tools",
-    description: "Git utilities and helper tools for developers",
-    icon: Wrench,
-    category: "web",
-    categoryLabel: "WEB APP",
-    stars: 1,
-    tags: ["JavaScript", "Git"],
-    repoUrl: "https://github.com/Classyvaibhav06/git-",
-  },
-  {
-    title: "ST2 Project",
-    description: "Web development project with modern HTML/CSS",
-    icon: Globe,
-    category: "web",
-    categoryLabel: "WEB",
-    stars: 1,
-    tags: ["HTML", "CSS"],
-    demoUrl: "https://github.com/Classyvaibhav06/st2",
-    repoUrl: "https://github.com/Classyvaibhav06/st2",
-  },
-  {
-    title: "ST3 Project",
-    description: "Another web development experiment",
-    icon: Zap,
-    category: "web",
-    categoryLabel: "WEB",
-    stars: 1,
-    tags: ["HTML", "JavaScript"],
-    repoUrl: "https://github.com/Classyvaibhav06/st3",
-  },
-];
+import { projects } from "@/data/projects";
+import Link from "next/link";
+import { Star } from "lucide-react";
 
 const filters = [
   { label: "All", value: "all" },
@@ -110,7 +30,7 @@ export default function ProjectsSection() {
         </ScrollReveal>
         <ScrollReveal variant="minimal-reveal" delay={150}>
           <p className="text-neutral-400 text-center mb-6 sm:mb-8 font-mono text-xs sm:text-sm">
-            {"//"} Hover for details
+            {"//"} Click for details
           </p>
         </ScrollReveal>
 
@@ -137,9 +57,10 @@ export default function ProjectsSection() {
           {filteredProjects.map((project) => {
             const Icon = project.icon;
             return (
-              <div
-                key={project.title}
-                className={`project-card bg-neutral-900 rounded-md overflow-hidden group relative cursor-pointer ${
+              <Link
+                href={`/projects/${project.slug}`}
+                key={project.slug}
+                className={`project-card bg-neutral-900 rounded-md overflow-hidden group relative cursor-pointer block ${
                   project.featured ? "md:col-span-2 md:row-span-2" : ""
                 }`}
               >
@@ -178,38 +99,9 @@ export default function ProjectsSection() {
                         alt={project.title}
                       />
                     )}
-                    {project.demoUrl && (
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 sm:px-4 py-2 bg-yellow-400 text-black rounded text-sm font-semibold hover:bg-yellow-500 transition-all z-10"
-                      >
-                        {project.repoUrl && project.demoUrl !== project.repoUrl
-                          ? "View Demo"
-                          : "Demo"}
-                      </a>
-                    )}
-                    {project.repoUrl && project.repoUrl !== project.demoUrl && (
-                      <a
-                        href={project.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-2 border border-yellow-400 text-yellow-400 rounded text-sm font-semibold z-10 hover:bg-yellow-400/10 transition-colors"
-                      >
-                        Code
-                      </a>
-                    )}
-                    {!project.demoUrl && project.repoUrl && (
-                      <a
-                        href={project.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-2 bg-yellow-400 text-black rounded text-sm font-semibold z-10 hover:bg-yellow-500 transition-all"
-                      >
-                        View Repo
-                      </a>
-                    )}
+                    <span className="px-4 py-2 bg-yellow-400 text-black rounded text-sm font-bold uppercase tracking-wider scale-90 group-hover:scale-100 transition-all duration-300">
+                      View Details
+                    </span>
                   </div>
                 </div>
 
@@ -243,7 +135,7 @@ export default function ProjectsSection() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </ScrollReveal>

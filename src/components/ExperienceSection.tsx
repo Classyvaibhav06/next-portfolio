@@ -19,51 +19,49 @@ interface Quest {
 
 const quests: Quest[] = [
   {
-    title: "Senior Full-Stack Developer",
-    company: "@ TechCorp Solutions",
-    period: "2023 — PRESENT",
+    title: "Full-Stack Web Developer",
+    company: "@ Kiwi connect digital, bhopal",
+    period: "April 2026 — June 2026",
     status: "active",
-    xp: "+1200 XP",
+    xp: "+1500 XP",
     tier: "gold",
-    icon: Zap,
+    icon: Rocket,
     items: [
-      "Led team of 5 developers on enterprise platform",
-      "Improved performance by 40% through optimization",
-      "Architected microservices infrastructure",
+      "Designed and developed full-stack web applications with RESTful APIs and database integration",
+      "Implemented authentication and authorization systems using JWT and bcrypt for secure access control",
+      "Optimized frontend performance and ensured responsive design across devices",
+      "Deployed applications on cloud platforms and managed server-side configurations",
     ],
-    tags: ["React", "Node.js", "AWS"],
+    tags: ["Full Stack", "JWT", "Bcrypt", "Cloud"],
     side: "left",
   },
   {
-    title: "Full-Stack Developer",
-    company: "@ StartupHub Inc",
-    period: "2021 — 2023",
-    status: "completed",
-    xp: "+900 XP",
+    title: "Next Adventure",
+    company: "@ Coming Soon",
+    period: "Future",
+    status: "active",
+    xp: "??? XP",
     tier: "silver",
-    icon: Rocket,
+    icon: Sword,
     items: [
-      "Built MVP from scratch, gained 10K users",
-      "Implemented real-time features with WebSockets",
-      "Mentored 3 junior developers",
+      "The next chapter of my professional journey is being written.",
+      "Stay tuned for exciting updates!",
     ],
-    tags: ["Vue.js", "Express", "MongoDB"],
+    tags: ["Loading..."],
     side: "right",
   },
   {
-    title: "Frontend Developer",
-    company: "@ Digital Agency Co",
-    period: "2019 — 2021",
-    status: "completed",
-    xp: "+600 XP",
+    title: "Future Quest",
+    company: "@ Coming Soon",
+    period: "Future",
+    status: "active",
+    xp: "??? XP",
     tier: "bronze",
-    icon: Monitor,
+    icon: Zap,
     items: [
-      "Developed 15+ client websites",
-      "Specialized in animations and interactions",
-      "Achieved 95+ Lighthouse scores",
+      "Always looking for new challenges and opportunities to grow.",
     ],
-    tags: ["React", "GSAP", "Sass"],
+    tags: ["Loading..."],
     side: "left",
   },
 ];
@@ -92,7 +90,7 @@ export default function ExperienceSection() {
           <ScrollReveal variant="fade-up" delay={300}>
             <p className="text-neutral-500 font-mono text-xs sm:text-sm">
               {"//"} Level-up timeline &nbsp;|&nbsp;{" "}
-              <span className="text-yellow-400">3 quests completed</span>
+              <span className="text-yellow-400">1 quest active</span>
             </p>
           </ScrollReveal>
         </div>

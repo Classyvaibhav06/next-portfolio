@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const navItems = [
   { href: "#hero", label: "Home" },
@@ -14,20 +15,27 @@ const navItems = [
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const xpBarRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const handleNavClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        const offset = 80;
-        const targetPos =
-          (target as HTMLElement).offsetTop - offset;
-        window.scrollTo({ top: targetPos, behavior: "smooth" });
+      if (pathname === "/") {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const offset = 80;
+          const targetPos =
+            (target as HTMLElement).offsetTop - offset;
+          window.scrollTo({ top: targetPos, behavior: "smooth" });
+        }
+      } else {
+        // If not on home page, let the default Link behavior happen
+        // or manually navigate if e.preventDefault() was called elsewhere
       }
       setMobileOpen(false);
     },
-    []
+    [pathname]
   );
 
   return (
@@ -60,17 +68,17 @@ export default function Navbar() {
           <div className="flex items-center gap-3 sm:gap-4 ml-auto">
             <nav className="hidden sm:flex gap-5 lg:gap-7 items-center">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.href}
-                  href={item.href}
+                  href={`/${item.href}`}
                   className="nav-link"
-                  onClick={(e) => handleNavClick(e, item.href)}
+                  onClick={(e) => handleNavClick(e as any, item.href)}
                 >
                   <span className="bracket-l">«</span>
                   <span className="link-text">{item.label}</span>
                   <span className="bracket-r">»</span>
                   <span className="active-dot" />
-                </a>
+                </Link>
               ))}
             </nav>
 
@@ -118,14 +126,14 @@ export default function Navbar() {
       >
         <nav className="flex flex-col p-6 gap-4">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
-              href={item.href}
+              href={`/${item.href}`}
               className="mobile-nav-link mobile-link"
-              onClick={(e) => handleNavClick(e, item.href)}
+              onClick={(e) => handleNavClick(e as any, item.href)}
             >
               › {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
       </div>
